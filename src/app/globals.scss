@@ -1,0 +1,30 @@
+@import '../../node_modules/kiji-tech-ui-component/dist/index.css';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+form {
+    width: 100%;
+}
+
+.contents {
+    width: calc(100% - 16px);
+    display: flex;
+    flex-flow: column;
+    margin: 8px;
+    align-items: center;
+}
+
+$button-width: 120px;
+
+.buttonWidth {
+    width: $button-width;
+}
+
+.buttonGroup {
+    max-width: 900px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}

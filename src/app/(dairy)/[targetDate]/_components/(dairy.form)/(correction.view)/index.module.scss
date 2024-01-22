@@ -1,0 +1,41 @@
+.corrections {
+    overflow-y: auto;
+    height: 100%;
+    margin-bottom: 32px;
+    .correction {
+        padding: 16px;
+        border-bottom: 1px solid #cecece;
+        &:last-child {
+            border-bottom: 0px;
+        }
+        div {
+            margin-bottom: 4px;
+        }
+        .en {
+            font-size: 18px;
+            width: 100%;
+            padding: 4px;
+            background: rgba(221, 221, 221, 0.5);
+        }
+        .writeJa,
+        .writeEn {
+            font-size: 12px;
+        }
+        .writeJa {
+            color: gray;
+        }
+        .writeEn {
+            margin-left: 16px;
+        }
+        .info {
+            margin-left: 24px;
+            font-size: 12px;
+        }
+        .points {
+            margin-left: 16px;
+            font-size: 12px;
+        }
+        .word {
+        }
+    }
+}

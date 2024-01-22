@@ -1,0 +1,65 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("NEXT_PUBLIC_DATABASE_URL")
+}
+
+model User {
+    uid   String @id @default(uuid())
+    name  String
+    role String @default("User")
+    dairies Dairy[]
+
+    deleteFlag Boolean @default(false) @map("delete_flag")
+    @@map("users")
+}
+
+model Dairy {
+    uid String @id @default(uuid())
+    targetDate String
+    user User @relation(fields: [userId], references: [uid])
+    userId String @map("user_id")
+    ja String?
+    en String?
+    corrections Correction[]
+    words Word[]
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")  
+
+    deleteFlag Boolean @default(false) @map("delete_flag")
+    @@unique([targetDate, userId])   
+    @@map("daiaries")
+}
+
+
+model Correction {
+    uid String @id @default(uuid())
+    dairy Dairy @relation(fields: [dairyId], references: [uid])
+    dairyId String @map("dairy_id")
+    ja String?
+    en String?
+    resultJa String?
+    resultEn String?
+    points String?
+    score Int?
+    deleteFlag Boolean @default(false) @map("delete_flag")
+
+    @@map("corrections")
+}
+
+model Word {
+    uid String @id @default(uuid())
+    dairy Dairy @relation(fields: [dairyId], references: [uid])
+    dairyId String @map("dairy_id")
+    word String
+    mean String
+    deleteFlag Boolean @default(false) @map("delete_flag")
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@unique([dairyId])
+    @@map("words")
+}

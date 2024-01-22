@@ -1,0 +1,8 @@
+@import 'src/app/variables.module.scss';
+
+p.errorMessage {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: red;
+}
