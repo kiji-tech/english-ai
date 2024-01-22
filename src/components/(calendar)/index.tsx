@@ -9,7 +9,7 @@ type CorrectionCalendarProps = {
     id: string;
     name: string;
 };
-export default function CorrectionCalendar({ id, name }: CorrectionCalendarProps) {
+export default function Calendar({ id, name }: CorrectionCalendarProps) {
     const router = useRouter();
     const context = useContext(DairyContext);
     if (!context) return <></>;

@@ -3,7 +3,7 @@
 import styles from './index.module.scss';
 import { useState } from 'react';
 import { Textarea } from 'kiji-tech-ui-component';
-import ErrorMessage from './(error.message)';
+import ErrorMessage from '@/components/(error.message)';
 
 type DairyProps = {
     id: string;

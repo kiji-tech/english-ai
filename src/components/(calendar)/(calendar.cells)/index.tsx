@@ -1,10 +1,7 @@
 'use client';
 
-import dayjs from 'dayjs';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import styles from './index.module.scss';
-import { useRouter } from 'next/navigation';
-import { Correction } from '@prisma/client';
 import CalendarCell from './(calendar.cell)';
 import { DairyContext } from '@/context/dairy.context';
 type CalendarCellsProps = {

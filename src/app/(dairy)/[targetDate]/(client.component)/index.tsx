@@ -1,24 +1,36 @@
 'use client';
 import styles from './index.module.scss';
-import Provider from '../../provider';
+import Provider from '../provider';
 import { useFormState } from 'react-dom';
-import { State, saveDairy } from '@/actions/save.dairy';
+import { saveDairy } from '@/actions/save.dairy';
 import { DairyContextType } from '@/context/dairy.context';
-import CorrectionCalendar from './(correction.calendar)';
-import DairyWriter from './(dairy.writer)';
-import SubmitButton from './(submit.button)';
-import CorrectionView from './(correction.view)';
-import WordView from './(word.view)';
+import CorrectionCalendar from '@/components/(calendar)';
+import DairyWriter from '@/components/(dairy.writer)';
+import SubmitButton from '@/components/(submit.button)';
+import CorrectionView from '@/components/(correction.view)';
+import WordView from '@/components/(word.view)';
+import { useAction } from '@/hooks/use.action';
 
-type DairyFormProps = {
+type ClientComponentProps = {
     data: DairyContextType;
 };
-const DairyForm = ({ data }: DairyFormProps) => {
-    const initialMessage: State = { errors: {}, message: null };
-    const [state, dispatch] = useFormState(saveDairy, initialMessage);
+const ClientComponent = ({ data }: ClientComponentProps) => {
+    const { execute, fieldErrors } = useAction(saveDairy, {
+        onSuccess: () => {},
+        onError: () => {},
+        onComplete: () => {},
+    });
+
+    const onSubmit = async (formData: FormData) => {
+        const ja = formData.get('ja') as string;
+        const en = formData.get('en') as string;
+        const targetDate = formData.get('selectedDate') as string;
+        await execute({ ja, en, targetDate });
+    };
+
     return (
         <Provider data={data}>
-            <form action={dispatch} className={styles.layout}>
+            <form action={onSubmit} className={styles.layout}>
                 <div className={`${styles.section} ${styles.calendar}`}>
                     {/* カレンダー */}
                     <CorrectionCalendar id="selectedDate" name="selectedDate" />
@@ -32,7 +44,7 @@ const DairyForm = ({ data }: DairyFormProps) => {
                     <DairyWriter
                         id={'ja'}
                         name="ja"
-                        errors={state?.errors?.ja}
+                        errors={fieldErrors?.ja}
                         initValue={data.dairy.ja || ''}
                         label={'日本語'}
                         isLoading={false}
@@ -41,7 +53,7 @@ const DairyForm = ({ data }: DairyFormProps) => {
                     <DairyWriter
                         id={'en'}
                         name="en"
-                        errors={state?.errors?.en}
+                        errors={fieldErrors?.en}
                         initValue={data.dairy.en || ''}
                         label={'英語'}
                         isLoading={false}
@@ -60,4 +72,4 @@ const DairyForm = ({ data }: DairyFormProps) => {
     );
 };
 
-export default DairyForm;
+export default ClientComponent;
