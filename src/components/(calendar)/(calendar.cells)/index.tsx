@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import styles from './index.module.scss';
 import CalendarCell from './(calendar.cell)';
 import { DairyContext } from '@/context/dairy.context';
+import dayjs from 'dayjs';
 type CalendarCellsProps = {
     value: Date;
     startDay?: number;
@@ -30,7 +31,7 @@ export default function CalendarCells({ value, startDay = 0, onClick = (selected
                 {context.dateList.map((d, index) => {
                     return (
                         <CalendarCell
-                            key={index}
+                            key={`cell-${dayjs(d).format('YYYYMMDD')}`}
                             date={d}
                             day={index}
                             selected={d.toLocaleDateString() == value.toLocaleDateString()}

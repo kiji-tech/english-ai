@@ -30,7 +30,7 @@ const CalendarCell = ({ date, day, selected, isMonth, onClick = (selectedDate: D
             {dayjs(date).format(`D`)}
             {dairyList?.map((d) => {
                 return dayjs(d.targetDate).isSame(dayjs(date)) ? (
-                    <div className={styles.layout}>
+                    <div key={`dairy-${d.targetDate}`} className={styles.layout}>
                         <FontAwesomeIcon icon={faBook} className={styles.correctionIcon} />
                     </div>
                 ) : null;

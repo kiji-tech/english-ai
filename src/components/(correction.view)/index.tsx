@@ -1,23 +1,34 @@
-import { Correction } from '@prisma/client';
+'use client';
+import { useState } from 'react';
 import styles from './index.module.scss';
-
+import { Correction } from '@prisma/client';
 type CorrectionViewProps = {
     correctionList?: Correction[];
 };
+
 export default function CorrectionView({ correctionList = [] }: CorrectionViewProps) {
+    const [isSpeech, setIsSpeech] = useState(false);
     const handleSpeech = (text: string) => {
         // 発言を設定
         const uttr = new SpeechSynthesisUtterance();
         uttr.text = text;
-        uttr.lang = 'en-UK';
+        uttr.rate = 0.9;
+        uttr.lang = 'en-US';
+        uttr.addEventListener('end', () => {
+            console.log('end speech');
+            setIsSpeech(false);
+        });
         // 発言を再生
-        window.speechSynthesis.speak(uttr);
+        if (!isSpeech) {
+            setIsSpeech(true);
+            window.speechSynthesis.speak(uttr);
+        }
     };
 
     if (!correctionList?.length) return <div className={styles.corrections}>添削結果がありません</div>;
 
     return (
-        <div key="modal-correction" className={styles.corrections}>
+        <div className={styles.corrections}>
             {correctionList.map((r, index: number) => {
                 return (
                     <div key={`result-${index}`} className={styles.correction}>
