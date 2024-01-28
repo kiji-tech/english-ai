@@ -26,10 +26,11 @@
         .correctionView {
             height: calc(100vh - 400px);
             margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid gray;
         }
         .wordView {
             height: 350px;
-            background: blue;
         }
     }
 }

@@ -7,6 +7,7 @@ import { AI } from '@/libs/ai/ai';
 import { InputType, OutputType } from './types';
 import { createSafeAction } from '@/libs/create.safe.action';
 import { SaveDairy } from './schema';
+import { Correction, Word } from '@prisma/client';
 
 const runAI = async (ja: string, en: string) => {
     const systemContent = await fs.readFileSync(process.env.NEXT_PUBLIC_OPEN_AI_SYSTEM_CONTENT_PATH!, {
@@ -21,6 +22,29 @@ ${en}
 `;
     const aiResult = await AI.getInstance().run(systemContent, userContent);
     return aiResult;
+};
+
+const updateCorrection = async (dairyId: string, results: Correction[]) => {
+    await DB.correction.updateMany({ where: { dairyId }, data: { deleteFlag: true } });
+    for (let result of results) {
+        await DB.correction.create({
+            data: {
+                ...result,
+                dairyId,
+            },
+        });
+    }
+};
+const updateWord = async (dairyId: string, results: Word[]) => {
+    await DB.word.updateMany({ where: { dairyId }, data: { deleteFlag: true } });
+    for (let result of results) {
+        await DB.word.create({
+            data: {
+                ...result,
+                dairyId,
+            },
+        });
+    }
 };
 
 const handler = async (data: InputType): Promise<OutputType> => {
@@ -39,16 +63,9 @@ const handler = async (data: InputType): Promise<OutputType> => {
 
         // aiで添削
         const correction = await runAI(ja, en);
-        // 過去の添削はすべて削除
-        await DB.correction.updateMany({ where: { dairyId }, data: { deleteFlag: true } });
-        for (let result of correction.results) {
-            await DB.correction.create({
-                data: {
-                    dairyId,
-                    ...result,
-                },
-            });
-        }
+        console.dir(correction);
+        await updateCorrection(dairyId, correction.results as Correction[]);
+        await updateWord(dairyId, correction.words as Word[]);
     } catch (e) {
         console.error(e);
         return { error: 'DB save error' };

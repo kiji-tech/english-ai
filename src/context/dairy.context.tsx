@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { Correction, Dairy } from '@prisma/client';
+import { Correction, Dairy, Word } from '@prisma/client';
 
 type DairyContextType = {
     dateList: Date[];
-    dairy: Dairy & { corrections: Correction[] };
+    dairy: Dairy & { corrections: Correction[]; words: Word[] };
     dairyList: (Dairy & { corrections: Correction[] })[];
     mode: string;
 };

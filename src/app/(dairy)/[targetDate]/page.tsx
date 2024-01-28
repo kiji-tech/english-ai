@@ -1,18 +1,21 @@
 import styles from './page.module.scss';
 import dayjs from 'dayjs';
 import { DB } from '@/libs/db/prisma';
-import { Correction, Dairy } from '@prisma/client';
+import { Correction, Dairy, Word } from '@prisma/client';
 import Calendar from './(client.component)';
 import ClientComponent from './(client.component)';
 
 const Page = async ({ params }: { params: { targetDate: string } }) => {
     const targetDate = params.targetDate || dayjs(new Date()).format('YYYYMMDD');
     // dairy
-    const initDairy = { ja: '', en: '', targetDate, corrections: [] } as unknown as Dairy & { corrections: Correction[] };
+    const initDairy = { ja: '', en: '', targetDate, corrections: [], words: [] } as unknown as Dairy & {
+        corrections: Correction[];
+        words: Word[];
+    };
     const dairy =
         (await DB.dairy.findUnique({
             where: { targetDate_userId: { targetDate, userId: 'admin' } },
-            include: { corrections: { where: { deleteFlag: false } } },
+            include: { corrections: { where: { deleteFlag: false } }, words: { where: { deleteFlag: false } } },
         })) || initDairy;
 
     // date list

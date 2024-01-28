@@ -1,7 +1,6 @@
 'use client';
 import styles from './index.module.scss';
 import Provider from '../provider';
-import { useFormState } from 'react-dom';
 import { saveDairy } from '@/actions/save.dairy';
 import { DairyContextType } from '@/context/dairy.context';
 import CorrectionCalendar from '@/components/(calendar)';
@@ -59,12 +58,13 @@ const ClientComponent = ({ data }: ClientComponentProps) => {
                         isLoading={false}
                     />
                 </div>
+                {/* AI 解析結果 */}
                 <div className={`${styles.section} ${styles.right}`}>
                     <div className={styles.correctionView}>
                         <CorrectionView correctionList={data.dairy.corrections} />
                     </div>
                     <div className={styles.wordView}>
-                        <WordView />
+                        <WordView words={data.dairy.words} />
                     </div>
                 </div>
             </form>
