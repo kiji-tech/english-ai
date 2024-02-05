@@ -3,23 +3,35 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "postgresql"
     url      = env("NEXT_PUBLIC_DATABASE_URL")
+}
+
+enum Role {
+    User
+    Admin
+}
+
+enum MemberShip {
+    Free
+    Prime
 }
 
 model User {
     uid   String @id @default(uuid())
     name  String
-    role String @default("User")
-    dairies Dairy[]
-
+    role Role @default(User)
+    memberShip MemberShip @default(Free) @map("member_ship")
+    diaries Diary[]
     deleteFlag Boolean @default(false) @map("delete_flag")
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")  
     @@map("users")
 }
 
-model Dairy {
+model Diary {
     uid String @id @default(uuid())
-    targetDate String
+    targetDate String @map("target_date")
     user User @relation(fields: [userId], references: [uid])
     userId String @map("user_id")
     ja String?
@@ -31,18 +43,18 @@ model Dairy {
 
     deleteFlag Boolean @default(false) @map("delete_flag")
     @@unique([targetDate, userId])   
-    @@map("daiaries")
+    @@map("diaries")
 }
 
 
 model Correction {
     uid String @id @default(uuid())
-    dairy Dairy @relation(fields: [dairyId], references: [uid])
-    dairyId String @map("dairy_id")
+    diary Diary @relation(fields: [diaryId], references: [uid])
+    diaryId String @map("diary_id")
     ja String?
     en String?
-    resultJa String?
-    resultEn String?
+    resultJa String? @map("result_ja")
+    resultEn String? @map("result_en")
     points String?
     score Int?
     deleteFlag Boolean @default(false) @map("delete_flag")
@@ -52,8 +64,8 @@ model Correction {
 
 model Word {
     uid String @id @default(uuid())
-    dairy Dairy @relation(fields: [dairyId], references: [uid])
-    dairyId String @map("dairy_id")
+    diary Diary @relation(fields: [diaryId], references: [uid])
+    diaryId String @map("diary_id")
     word String
     mean String
     deleteFlag Boolean @default(false) @map("delete_flag")

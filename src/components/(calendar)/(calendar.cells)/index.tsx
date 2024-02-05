@@ -3,7 +3,7 @@
 import { useContext } from 'react';
 import styles from './index.module.scss';
 import CalendarCell from './(calendar.cell)';
-import { DairyContext } from '@/context/dairy.context';
+import { DiaryContext } from '@/context/diary.context';
 import dayjs from 'dayjs';
 type CalendarCellsProps = {
     value: Date;
@@ -13,7 +13,7 @@ type CalendarCellsProps = {
 const dayStrList = ['日', '月', '火', '水', '木', '金', '土'];
 
 export default function CalendarCells({ value, startDay = 0, onClick = (selectedDate: Date) => {} }: CalendarCellsProps) {
-    const context = useContext(DairyContext);
+    const context = useContext(DiaryContext);
     if (!context) return <></>;
 
     return (

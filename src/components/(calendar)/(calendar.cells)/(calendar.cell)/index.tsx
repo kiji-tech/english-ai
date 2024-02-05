@@ -2,7 +2,7 @@
 import styles from './index.module.scss';
 import dayjs from 'dayjs';
 import { Correction } from '@prisma/client';
-import { DairyContext } from '@/context/dairy.context';
+import { DiaryContext } from '@/context/diary.context';
 import { useContext } from 'react';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,9 +17,9 @@ type CalendarCellProps = {
 };
 
 const CalendarCell = ({ date, day, selected, isMonth, onClick = (selectedDate: Date) => {} }: CalendarCellProps) => {
-    const context = useContext(DairyContext);
+    const context = useContext(DiaryContext);
     if (!context) return <></>;
-    const { dairyList } = context;
+    const { diaryList } = context;
     return (
         <div
             onClick={() => onClick(date)}
@@ -28,9 +28,9 @@ const CalendarCell = ({ date, day, selected, isMonth, onClick = (selectedDate: D
             }`}
         >
             {dayjs(date).format(`D`)}
-            {dairyList?.map((d) => {
+            {diaryList?.map((d) => {
                 return dayjs(d.targetDate).isSame(dayjs(date)) ? (
-                    <div key={`dairy-${d.targetDate}`} className={styles.layout}>
+                    <div key={`diary-${d.targetDate}`} className={styles.layout}>
                         <FontAwesomeIcon icon={faBook} className={styles.correctionIcon} />
                     </div>
                 ) : null;

@@ -1,0 +1,34 @@
+@import '../../app/variables.module.scss';
+
+$header-size: 40px;
+$menu-bg: red;
+
+// モバイル
+.header {
+    background-color: $menu-bg;
+    height: $header-size;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        height: calc($header-size - 16px);
+    }
+    div.menu {
+        padding: 8px;
+        width: calc($header-size - 16px);
+        cursor: pointer;
+        transition: filter 0.3s;
+        &:hover {
+            background-color: $menu-bg;
+            filter: brightness(0.75);
+        }
+    }
+    div.appName {
+        font-size: 24px;
+    }
+}
+@media screen and (min-width: $mobile-size) {
+    .header {
+        background-color: blue;
+    }
+}

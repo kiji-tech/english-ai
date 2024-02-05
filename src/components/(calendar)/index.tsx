@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 import CalendarOperation from './(calendar.operation)';
 import CalendarCells from './(calendar.cells)';
-import { DairyContext } from '@/context/dairy.context';
+import { DiaryContext } from '@/context/diary.context';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 type CorrectionCalendarProps = {
@@ -11,10 +11,10 @@ type CorrectionCalendarProps = {
 };
 export default function Calendar({ id, name }: CorrectionCalendarProps) {
     const router = useRouter();
-    const context = useContext(DairyContext);
+    const context = useContext(DiaryContext);
     if (!context) return <></>;
 
-    const targetDate = context.dairy.targetDate;
+    const targetDate = context.diary.targetDate;
     return (
         <>
             <input type="hidden" id={id} name={name} value={targetDate} />

@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 import { useContext } from 'react';
 import { Button } from 'kiji-tech-ui-component';
-import { DairyContext } from '@/context/dairy.context';
+import { DiaryContext } from '@/context/diary.context';
 
 type CalendarOperationProps = {
     value: Date;
@@ -10,7 +10,7 @@ type CalendarOperationProps = {
 };
 
 export default function CalendarOperation({ value, onClick = (selectedDate: Date) => {} }: CalendarOperationProps) {
-    const context = useContext(DairyContext);
+    const context = useContext(DiaryContext);
     if (!context) return <></>;
     const mode = context.mode;
 
