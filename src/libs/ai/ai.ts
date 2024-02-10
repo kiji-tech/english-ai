@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPEN_AI_SECRET });
+const openai = new OpenAI({ apiKey: process.env.OPEN_AI_SECRET });
 
 export class AI {
     private static instance: AI | undefined;
@@ -13,7 +13,7 @@ export class AI {
             console.warn('SystemContent is not found.');
             throw new Error('SystemContent is not found.');
         }
-        const modelName = process.env.NEXT_PUBLIC_OPEN_AI_MODEL!;
+        const modelName = process.env.OPEN_AI_MODEL!;
         try {
             const completion = await openai.chat.completions.create({
                 messages: [

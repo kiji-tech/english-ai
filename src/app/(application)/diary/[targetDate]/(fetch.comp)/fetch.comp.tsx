@@ -1,6 +1,6 @@
 import styles from './fetch.comp.module.scss';
 import { DB } from '@/libs/db/prisma';
-import { Diary } from '@prisma/client';
+import { Correction, Diary, Word } from '@prisma/client';
 import ClientComp from './(client.comp)/client.comp';
 import Skeleton from '@/components/(skeleton)/skeleton';
 type FetchCompProps = {
@@ -14,8 +14,7 @@ const FetchComp = async ({ targetDate }: FetchCompProps) => {
         (await DB.diary.findUnique({
             where: { targetDate_userId: { targetDate, userId: 'admin' } },
             include: { corrections: { where: { deleteFlag: false } }, words: { where: { deleteFlag: false } } },
-        })) || ({ ja: '', en: '', targetDate } as Diary);
-    console.dir(diary);
+        })) || ({ ja: '', en: '', targetDate } as Diary & { corrections: Correction[]; words: Word[] });
     return <ClientComp diary={diary} />;
 };
 

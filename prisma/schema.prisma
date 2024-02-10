@@ -55,6 +55,8 @@ model Correction {
     en String?
     resultJa String? @map("result_ja")
     resultEn String? @map("result_en")
+    commentJa String? @map("comment_ja")
+    commentEn String? @map("comment_en")
     points String?
     score Int?
     deleteFlag Boolean @default(false) @map("delete_flag")

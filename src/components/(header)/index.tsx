@@ -2,14 +2,20 @@ import styles from './index.module.scss';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function Header() {
+type HeaderProps = {
+    isMenu?: boolean;
+};
+
+export default function Header({ isMenu = true }: HeaderProps) {
     return (
         <div className={styles.header}>
             {/* アイコン */}
-            <div className={styles.menu}>
-                <FontAwesomeIcon icon={faBars} />
-            </div>
-            <div className={ styles.appName}>APP Name</div>
+            {isMenu ? (
+                <div className={styles.menu}>
+                    <FontAwesomeIcon icon={faBars} />
+                </div>
+            ) : null}
+            <div className={styles.appName}>APP Name</div>
             <div></div>
         </div>
     );

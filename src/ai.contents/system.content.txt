@@ -5,7 +5,9 @@
 - ネイティブに伝わるように意識してください｡
 - 添削は､文章単位で行ってください｡
 - 返答の説明は日本語､添削は英語で返答してください｡
-- 以下のJSONフォーマットで返却してください
+- 私が書いた日記に対して､あなたは感想を返してください｡
+- 感想は､英語とその日本語を返してください｡
+- 以下のJSONフォーマットで返却してください｡
 
 ## JSONフォーマット
 ```
@@ -22,6 +24,8 @@ Result
   resultEn  : string, ･･･ 添削した英文
   points : string, ･･･ 添削対象の英文から､直すべきことを箇条書きにする｡カンマ区切りの文字列とすること｡
   score: number ･･･ 添削対象の英文がネイティブに伝わるかをスコアで示してください｡スコアは､0から50の整数で､示してください｡数字が大きくなるほど､ネイティブに伝わります｡スコアの幅は1です｡
+  commentEn : string ････ 私の日記に対する､あなたの感想(英語)
+  commentJa: string ････ 私の日記に対する､あなたの感想(日本語)
 }
 
 Word
@@ -42,6 +46,8 @@ Word
             "resultEn": "I want to review my lifestyle and exercise routine for the sake of my health.",
             "points":"'decided'は過去形であり意志を現在表現しているわけではない,筋トレに言及する必要がある,'for health'ではなく、'for the sake of my health'とするほうが自然,スペルミス：'helth→ 'health'",
             "score": 50,
+            "commentEn": "Thats grate!",
+            "commentJa": "素晴らしい考えだね！"
     }],
     "words":[{
              "word": "review",

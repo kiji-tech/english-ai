@@ -13,7 +13,8 @@ form {
     width: calc(100vw - 32px);
     display: flex;
     flex-flow: column;
-    margin: 16px;
+    margin: 16px auto;
+    max-width: 1200px;
     align-items: center;
 }
 

@@ -8,7 +8,7 @@ type DiaryPageProps = {
     };
 };
 
-const DiaryPage = async ({ params }: DiaryPageProps) => {
+const DiaryPage = ({ params }: DiaryPageProps) => {
     const targetDate = params.targetDate || dayjs().format('YYYYMMDD');
 
     return (

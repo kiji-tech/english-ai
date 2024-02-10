@@ -10,7 +10,7 @@ import { SaveDiary } from './schema';
 import { Correction, Word } from '@prisma/client';
 
 const runAI = async (ja: string, en: string) => {
-    const systemContent = await fs.readFileSync(process.env.NEXT_PUBLIC_OPEN_AI_SYSTEM_CONTENT_PATH!, {
+    const systemContent = await fs.readFileSync(process.env.OPEN_AI_SYSTEM_CONTENT_PATH!, {
         encoding: 'utf-8',
     });
     const userContent = `
@@ -49,7 +49,7 @@ const updateWord = async (diaryId: string, results: Word[]) => {
 };
 
 const handler = async (data: InputType): Promise<OutputType> => {
-    console.log('save diary.')
+    console.log('save diary.');
     // TODO authでuserIdを取得する
     const userId = 'admin';
 
