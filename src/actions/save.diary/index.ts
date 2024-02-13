@@ -1,5 +1,6 @@
 'use server';
 import fs from 'fs';
+import path from 'path';
 import { DB } from '@/utils/db/prisma';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -10,7 +11,7 @@ import { SaveDiary } from './schema';
 import { Correction, Word } from '@prisma/client';
 
 const runAI = async (ja: string, en: string) => {
-    const systemContent = await fs.readFileSync('public/ai.contents/system.content.txt', {
+    const systemContent = await fs.readFileSync(path.join(process.cwd(), 'public', 'ai.contents/system.content.txt'), {
         encoding: 'utf-8',
     });
     const userContent = `
