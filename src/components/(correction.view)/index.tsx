@@ -8,7 +8,7 @@ type CorrectionViewProps = {
 };
 
 export default function CorrectionView({ correctionList = [] }: CorrectionViewProps) {
-    if (!correctionList?.length) return <div className={styles.corrections}>添削結果がありません</div>;
+    if (!correctionList?.length) return <div className={styles.corrections}>添削結果がありません.</div>;
 
     return (
         <div className={styles.corrections}>
