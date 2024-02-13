@@ -1,4 +1,4 @@
-import { ActionState, FieldErrors } from '@/libs/create.safe.action';
+import { ActionState, FieldErrors } from '@/utils/create.safe.action';
 import { useState, useCallback } from 'react';
 
 type Action<TInput, TOutput> = (data: TInput) => Promise<ActionState<TInput, TOutput>>;

@@ -1,9 +1,9 @@
 @import '../../node_modules/kiji-tech-ui-component/dist/index.css';
-
+@import './variables.module.scss';
 body {
-    margin: 0;
+    margin: 0 0;
     padding: 0;
-    background: #f4f7ff;
+    background: $gray4;
 }
 form {
     width: 100%;
@@ -29,4 +29,14 @@ $button-width: 120px;
     display: flex;
     flex-flow: row;
     justify-content: space-around;
+}
+
+.bar {
+    width: 100%;
+    margin-bottom: 16px;
+    border-bottom: 1px solid $gray3;
+}
+
+.space {
+    margin: 8px 0;
 }

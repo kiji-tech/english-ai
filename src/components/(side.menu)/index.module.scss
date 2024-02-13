@@ -1,0 +1,75 @@
+@import '../../app/variables.module.scss';
+
+.sideMenuButton {
+    width: calc($header-height - 16px);
+    height: calc($header-height - 16px);
+    padding: 8px;
+    line-height: calc($header-height - 16px);
+    cursor: pointer;
+    transition: filter 0.3s;
+    z-index: 3;
+    &:hover {
+        filter: brightness(0.75);
+    }
+}
+
+.sideMenu {
+    width: 240px;
+    height: calc(100vh - 56px);
+    overflow: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 40px 16px 16px;
+    background-color: $gray4; // Set a background color
+    z-index: 2;
+    transform: translateX(-100%);
+    transition: 0.5s ease-in-out;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    text-align: center;
+
+    &.open {
+        transform: translateX(0);
+    }
+
+    .profile {
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    .scoreAreaHead,
+    .scoreAreaBody {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+        width: 100%;
+        text-align: center;
+        div,
+        p {
+            width: 50%;
+        }
+    }
+    .scoreAreaHead {
+        align-items: center;
+        font-size: 12px;
+    }
+    .scoreAreaBody {
+        align-items: flex-start;
+        margin-bottom: 16px;
+        font-size: 24px;
+    }
+
+    .link {
+        width: 100%;
+        padding: 8px 0;
+        font-size: 14px;
+    }
+    .menuFooter {
+        position: absolute;
+        bottom: 4px;
+        // width: 100%s;
+        font-size: 12px;
+    }
+}

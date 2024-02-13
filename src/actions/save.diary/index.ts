@@ -1,11 +1,11 @@
 'use server';
 import fs from 'fs';
-import { DB } from '@/libs/db/prisma';
+import { DB } from '@/utils/db/prisma';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { AI } from '@/libs/ai/ai';
+import { AI } from '@/utils/ai/ai';
 import { InputType, OutputType } from './types';
-import { createSafeAction } from '@/libs/create.safe.action';
+import { createSafeAction } from '@/utils/create.safe.action';
 import { SaveDiary } from './schema';
 import { Correction, Word } from '@prisma/client';
 

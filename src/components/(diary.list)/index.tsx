@@ -25,6 +25,9 @@ const DiaryList = ({ diaryList }: DiaryListProps) => {
         }
         setDateList(list);
     };
+    // ToDo: 過去日の表示
+
+
 
     const searchDiary = (diaryDate: Dayjs): Diary | null => {
         return diaryList.find((d) => d.targetDate == diaryDate.format('YYYYMMDD')) || null;
@@ -38,6 +41,7 @@ const DiaryList = ({ diaryList }: DiaryListProps) => {
         init();
     }, []);
 
+    // DOM ======================================>
     return (
         <div className={styles.diaryList}>
             {dateList.map((date) => (

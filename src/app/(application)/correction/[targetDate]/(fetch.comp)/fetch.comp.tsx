@@ -1,4 +1,4 @@
-import { DB } from '@/libs/db/prisma';
+import { DB } from '@/utils/db/prisma';
 import ClientComp from './(client.comp)/client.comp';
 import { Diary, Correction, Word } from '@prisma/client';
 import Skeleton from '@/components/(skeleton)/skeleton';

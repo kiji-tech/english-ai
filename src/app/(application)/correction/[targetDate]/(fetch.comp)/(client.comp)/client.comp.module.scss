@@ -1,37 +1,47 @@
 @import '../../../../../variables.module.scss';
 
 .results {
-    width: calc(100% - 32px);
-    height: calc(300px - 48px);
+    width: 100%;
     overflow-y: auto;
-    background: white;
     border-radius: 8px;
     margin-bottom: 16px;
-    padding: 16px;
 
-    .result {
-        width: 100%;
+    .diary {
+        padding: 16px;
+        border-radius: 8px;
+        background: white;
+        width: calc(72%);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .comment {
+        padding: 16px;
+        border-radius: 8px;
+        background: lightgreen;
+        width: calc(72%);
+        margin-left: calc(28% - 32px);
         white-space: pre-wrap;
         word-wrap: break-word;
         font-size: 16px;
         margin-bottom: 8px;
     }
 }
+
 .correctionArea {
     display: flex;
     flex-wrap: wrap;
-    flex-flow: row;
     width: 100%;
     justify-content: space-around;
     .corrections {
-        width: calc(50% - 4px);
-        margin-right: 8px;
-        min-width: 300px;
-        max-height: calc(100vh - 316px - $header-height);
+        width: calc(50% - 8px);
+        margin-bottom: 16px;
+        min-width: calc(375px - 32px);
     }
     .words {
-        width: calc(50% - 4px);
-        min-width: 300px;
-        max-height: calc(100vh - 316px - $header-height);
+        width: calc(50% - 8px);
+        min-width: calc(375px - 32px);
     }
 }

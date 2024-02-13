@@ -25,11 +25,11 @@ export default function DiaryWriter({ name, initValue, id, label, errors = [], i
                 name={name}
                 value={value}
                 onChange={(e: string) => setValue(e)}
-                height={160}
                 disabled={isLoading}
                 length={MAX_LENGTH}
                 label={label}
                 required
+                radius={true}
             />
             {errors.map((m) => {
                 return <ErrorMessage key={m} message={m} />;

@@ -8,7 +8,7 @@ const SubmitButton = () => {
     const { pending } = useFormStatus();
     return (
         <div className={'buttonWidth'}>
-            <Button label="保存する" type="submit" color="color-accent" disabled={pending} />
+            <Button label="保存する" radius={true} type="submit" disabled={pending} />
         </div>
     );
 };

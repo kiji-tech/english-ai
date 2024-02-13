@@ -1,0 +1,25 @@
+.words {
+    display: flex;
+    flex-wrap: wrap;
+    .word {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        border-radius: 8px;
+        padding: 8px;
+        background: white;
+        margin: 0 16px 16px 0;
+        .head {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            .text {
+                font-size: 16px;
+            }
+        }
+        .mean {
+            font-size: 10px;
+            color: gray;
+        }
+    }
+}

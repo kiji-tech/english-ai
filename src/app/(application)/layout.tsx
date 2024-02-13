@@ -1,3 +1,4 @@
+import Footer from '@/components/(footer)';
 import Header from '@/components/(header)';
 
 const DiaryLayout = ({ children }: { children: React.ReactNode }) => {
@@ -5,6 +6,7 @@ const DiaryLayout = ({ children }: { children: React.ReactNode }) => {
         <>
             <Header />
             <div className="contents">{children}</div>
+            <Footer />
         </>
     );
 };

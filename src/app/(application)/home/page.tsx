@@ -1,5 +1,5 @@
 import DiaryList from '@/components/(diary.list)';
-import { DB } from '@/libs/db/prisma';
+import { DB } from '@/utils/db/prisma';
 
 const Home = async () => {
     const diaryList =

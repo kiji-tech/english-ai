@@ -1,13 +1,11 @@
 import styles from './fetch.comp.module.scss';
-import { DB } from '@/libs/db/prisma';
+import { DB } from '@/utils/db/prisma';
 import { Correction, Diary, Word } from '@prisma/client';
 import ClientComp from './(client.comp)/client.comp';
 import Skeleton from '@/components/(skeleton)/skeleton';
 type FetchCompProps = {
     targetDate: string;
 };
-
-const timer = (ms: number) => new Promise((resolve) => setTimeout(() => resolve(null), ms));
 
 const FetchComp = async ({ targetDate }: FetchCompProps) => {
     const diary =
@@ -18,7 +16,7 @@ const FetchComp = async ({ targetDate }: FetchCompProps) => {
     return <ClientComp diary={diary} />;
 };
 
-FetchComp.SKELETON = function skeleton() {
+FetchComp.SKELETON = () => {
     return (
         <>
             <div style={{ width: '100%', height: '80px', margin: '8px' }}>

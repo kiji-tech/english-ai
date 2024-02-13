@@ -36,7 +36,9 @@ const ClientComp = ({ diary }: ClientCompProps) => {
             {/* 添削結果 */}
             <div className={styles.correctionArea}>
                 {diary.corrections && diary.corrections.length != 0 ? (
-                    <Button label={'添削結果'} onClick={() => router.push(`/correction/${diary.targetDate}`)} />
+                    <div className="buttonWidth">
+                        <Button label={'添削結果'} radius={true} onClick={() => router.push(`/correction/${diary.targetDate}`)} />
+                    </div>
                 ) : null}
             </div>
             {/* 入力フォーム */}
@@ -49,6 +51,7 @@ const ClientComp = ({ diary }: ClientCompProps) => {
 
                 {/* 日本語入力 */}
                 <DiaryWriter id={'ja'} name="ja" errors={fieldErrors?.ja} initValue={diary.ja || ''} label={'日本語'} isLoading={false} />
+                <div style={{ margin: '32px 0 ' }}></div>
                 {/* 英語入力 */}
                 <DiaryWriter id={'en'} name="en" errors={fieldErrors?.en} initValue={diary.en || ''} label={'英語'} isLoading={false} />
             </form>
