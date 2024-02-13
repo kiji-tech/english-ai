@@ -1,6 +1,6 @@
 @import '../../app/variables.module.scss';
 
-$day-item-size: 64px;
+$day-item-size: 128px;
 
 .diaryList {
     display: flex;
@@ -12,8 +12,7 @@ $day-item-size: 64px;
         flex-wrap: nowrap;
         height: $day-item-size;
         width: calc(100%);
-        border: 1px solid white;
-        background: white;
+        border: 1px solid $gray3;
         border-radius: 8px;
         margin-bottom: 16px;
         cursor: pointer;
