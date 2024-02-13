@@ -10,7 +10,7 @@ import { SaveDiary } from './schema';
 import { Correction, Word } from '@prisma/client';
 
 const runAI = async (ja: string, en: string) => {
-    const systemContent = await fs.readFileSync('../../ai.contents/system.contents.txt', {
+    const systemContent = await fs.readFileSync('public/ai.contents/system.content.txt', {
         encoding: 'utf-8',
     });
     const userContent = `
